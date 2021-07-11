@@ -1,0 +1,84 @@
+header {
+  margin-top: 50px;
+}
+body {
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/009/038/original/20190920_125312.jpg?1621191909);
+  background-attachment: fixed;
+  background-size: cover;
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0px 40px;
+}
+.citynames {
+  font-size: 24px;
+  text-align: center;
+  padding-top: 40px;
+}
+.citynames a:link {
+  text-decoration: none;
+  color: black;
+}
+.buttons {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+h1 {
+  margin: 20px 0px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 18px;
+  margin: 20px 0px;
+}
+
+.description {
+  text-transform: capitalize;
+}
+.currentTemperature {
+  font-size: 50px;
+  margin: 20px 0px;
+}
+
+.currentTemperature a:link {
+  text-decoration: none;
+  color: black;
+}
+.unit {
+  font-size: 20px;
+  position: relative;
+  top: -25px;
+}
+
+.weather-symbol {
+  padding-right: 10px;
+}
+.hours {
+  margin: 20px 0px;
+  text-align: center;
+  border: 1px solid grey;
+  padding: 20px;
+}
+.time {
+  font-weight: bold;
+}
+.week {
+  margin: 20px 0px;
+  text-align: center;
+  border: 1px solid grey;
+  padding: 20px;
+}
+.weekday {
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}

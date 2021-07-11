@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <!--add links-->
+        <div class="citynames">
+          <div class="row">
+            <div class="col" id="moscow">
+              <a href="link">Moscow</a>
+            </div>
+            <div class="col" id="berlin">
+              <a href="link">Berlin</a>
+            </div>
+            <div class="col" id="london">
+              <a href="link">London</a>
+            </div>
+            <div class="col" id="new-york">
+              <a href="link">New York</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <form class="buttons">
+        <input
+          type="text"
+          id="searchCity"
+          autocomplete="off"
+          autofocus="on"
+          placeholder="Enter a city"
+        />
+        <input type="submit" id="submitCity" value="Submit" />
+        <input type="button" id="current-location" value="Current location" />
+        <input type="button" id="random-location" value="Random location" />
+      </form>
+
+      <!--City & current weather-->
+      <h1>Madrid</h1>
+      <div class="row">
+        <div class="col">
+          <h2 id="currentTime">Friday 22:30</h2>
+          <h2 class="description" id="description">Cloudy</h2>
+        </div>
+        <div class="col">
+          <h2 id="humidity">Humidity: 70%</h2>
+          <h2 id="wind-speed">Wind: 10m/sec</h2>
+        </div>
+      </div>
+      <!--add link to °F-->
+      <p class="currentTemperature">
+        <span class="weather-symbol" id="weather-symbol">☁️</span
+        ><span id="currentDegrees">19</span
+        ><span class="unit"
+          ><a href="link" id="celsius">°C</a> |
+          <a href="link" id="fahrenheit"> °F</a></span
+        >
+      </p>
+      <!--Forecast-->
+      <section class="forecast">
+        <h3>The next 24 hours</h3>
+        <div class="hours">
+          <div class="row">
+            <div class="col time" id="plusThreeHours">06:00</div>
+            <div class="col time" id="plusSixHours">09:00</div>
+            <div class="col time" id="plusNineHours">12:00</div>
+            <div class="col time" id="plusTwelveHours">15:00</div>
+            <div class="col time" id="plusFifteenHours">18:00</div>
+            <div class="col time" id="plusEighteenHours">21:00</div>
+          </div>
+          <div class="row">
+            <div class="col">🌤</div>
+            <div class="col">☀️</div>
+            <div class="col">☀️</div>
+            <div class="col">⛅️</div>
+            <div class="col">☁️</div>
+            <div class="col">🌧</div>
+          </div>
+          <div class="row">
+            <div class="col">13°C</div>
+            <div class="col">18°C</div>
+            <div class="col">25°C</div>
+            <div class="col">26°C</div>
+            <div class="col">22°C</div>
+            <div class="col">18°C</div>
+          </div>
+        </div>
+        <h3>The next 6 days</h3>
+        <div class="week">
+          <div class="row">
+            <div class="col weekday" id="tomorrow">Sunday</div>
+            <div class="col weekday" id="plusTwo">Monday</div>
+            <div class="col weekday" id="plusThree">Tuesday</div>
+            <div class="col weekday" id="plusFour">Wednesday</div>
+            <div class="col weekday" id="plusFive">Thursday</div>
+            <div class="col weekday" id="plusSix">Friday</div>
+          </div>
+          <div class="row">
+            <div class="col">☁️</div>
+            <div class="col">🌧</div>
+            <div class="col">☀️</div>
+            <div class="col">🌦</div>
+            <div class="col">🌤</div>
+            <div class="col">☀️</div>
+          </div>
+          <div class="row">
+            <div class="col">12°C / <strong>17°C</strong></div>
+            <div class="col">14°C / <strong>20°C</strong></div>
+            <div class="col">15°C / <strong>23°C</strong></div>
+            <div class="col">12°C / <strong>19°C</strong></div>
+            <div class="col">15°C / <strong>25°C</strong></div>
+            <div class="col">16°C / <strong>26°C</strong></div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <p>Coded by Anni</p>
+      </footer>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
