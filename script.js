@@ -80,7 +80,6 @@ function showWeather(response) {
   let windElement = document.querySelector("#wind-speed");
   windElement.innerHTML = `Wind: ${windSpeed}m/sec`;
 
-  //let windDegree = `${response.data.wind.deg}`;
   let windDegreeElement = document.querySelector("#wind-icon");
 
   if (
