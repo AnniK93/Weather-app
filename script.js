@@ -11,6 +11,7 @@ function showWeather(response) {
   let weatherDescription = `${response.data.weather[0].description}`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = `${weatherDescription}`;
+
   let elementWeatherSymbol = document.querySelector("#weather-symbol");
 
   if (
@@ -30,8 +31,8 @@ function showWeather(response) {
         `${response.data.weather[0].description}` === "rain" ||
         `${response.data.weather[0].description}` === "drizzle" ||
         `${response.data.weather[0].description}` === "moderate rain" ||
-        `${response.data.weather[0].description}` ===
-          "light intensity shower rain" ||
+        `${response.data.weather[0].description}` === "light intensity shower rain" ||
+        `${response.data.weather[0].description}` === "light intensity drizzle" ||
         `${response.data.weather[0].description}` === "heavy intensity rain"
       ) {
         elementWeatherSymbol.innerHTML = "🌧";
@@ -78,6 +79,44 @@ function showWeather(response) {
   let windSpeed = `${response.data.wind.speed}`;
   let windElement = document.querySelector("#wind-speed");
   windElement.innerHTML = `Wind: ${windSpeed}m/sec`;
+
+  //let windDegree = `${response.data.wind.deg}`;
+  let windDegreeElement = document.querySelector("#wind-icon");
+
+  if (
+    `${response.data.wind.deg}` >=337 && `${response.data.wind.deg}` <=360 || `${response.data.wind.deg}` >=0 && `${response.data.wind.deg}` <=23
+    ) {
+      windDegreeElement.innerHTML = "⬇️";
+      } else {
+        if (`${response.data.wind.deg}` >23 && `${response.data.wind.deg}` <=68
+        ) {
+          windDegreeElement.innerHTML = "↙️";
+        } else {
+          if (`${response.data.wind.deg}` >68 && `${response.data.wind.deg}` <=113
+          ) {windDegreeElement.innerHTML = "⬅️";
+        } else {
+          if (`${response.data.wind.deg}` >113 && `${response.data.wind.deg}` <=158
+          ) {
+            windDegreeElement.innerHTML = "↖️";
+          } else {
+            if (`${response.data.wind.deg}` >158 && `${response.data.wind.deg}` <=203
+            ) {
+              windDegreeElement.innerHTML = "⬆️";
+            } else {
+              if (`${response.data.wind.deg}` >203 && `${response.data.wind.deg}` <=248
+              ) {
+                windDegreeElement.innerHTML = "↗️";
+              } else {
+                if (`${response.data.wind.deg}` >248 && `${response.data.wind.deg}` <=293
+                ) {windDegreeElement.innerHTML = "➡️";
+              } else {windDegreeElement.innerHTML = "↘️";
+              }
+            } 
+          }
+        }
+      }
+    }
+  }
 }
 
 function searchCity(event) {
