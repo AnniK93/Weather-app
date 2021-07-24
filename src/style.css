@@ -12,6 +12,7 @@ body {
 .container {
   background: rgba(255, 255, 255, 0.9);
   padding: 0px 40px;
+  max-width: 1000px;
 }
 .citynames {
   font-size: 24px;
@@ -38,7 +39,7 @@ h3 {
   margin: 20px 0px;
 }
 
-.description {
+.description:first-letter {
   text-transform: capitalize;
 }
 .currentTemperature {

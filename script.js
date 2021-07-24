@@ -31,8 +31,10 @@ function showWeather(response) {
         `${response.data.weather[0].description}` === "rain" ||
         `${response.data.weather[0].description}` === "drizzle" ||
         `${response.data.weather[0].description}` === "moderate rain" ||
-        `${response.data.weather[0].description}` === "light intensity shower rain" ||
-        `${response.data.weather[0].description}` === "light intensity drizzle" ||
+        `${response.data.weather[0].description}` ===
+          "light intensity shower rain" ||
+        `${response.data.weather[0].description}` ===
+          "light intensity drizzle" ||
         `${response.data.weather[0].description}` === "heavy intensity rain"
       ) {
         elementWeatherSymbol.innerHTML = "🌧";
@@ -83,34 +85,48 @@ function showWeather(response) {
   let windDegreeElement = document.querySelector("#wind-icon");
 
   if (
-    `${response.data.wind.deg}` >=337 && `${response.data.wind.deg}` <=360 || `${response.data.wind.deg}` >=0 && `${response.data.wind.deg}` <=23
-    ) {
-      windDegreeElement.innerHTML = "⬇️";
+    (`${response.data.wind.deg}` >= 337 &&
+      `${response.data.wind.deg}` <= 360) ||
+    (`${response.data.wind.deg}` >= 0 && `${response.data.wind.deg}` <= 23)
+  ) {
+    windDegreeElement.innerHTML = "⬇️";
+  } else {
+    if (`${response.data.wind.deg}` > 23 && `${response.data.wind.deg}` <= 68) {
+      windDegreeElement.innerHTML = "↙️";
+    } else {
+      if (
+        `${response.data.wind.deg}` > 68 &&
+        `${response.data.wind.deg}` <= 113
+      ) {
+        windDegreeElement.innerHTML = "⬅️";
       } else {
-        if (`${response.data.wind.deg}` >23 && `${response.data.wind.deg}` <=68
+        if (
+          `${response.data.wind.deg}` > 113 &&
+          `${response.data.wind.deg}` <= 158
         ) {
-          windDegreeElement.innerHTML = "↙️";
+          windDegreeElement.innerHTML = "↖️";
         } else {
-          if (`${response.data.wind.deg}` >68 && `${response.data.wind.deg}` <=113
-          ) {windDegreeElement.innerHTML = "⬅️";
-        } else {
-          if (`${response.data.wind.deg}` >113 && `${response.data.wind.deg}` <=158
+          if (
+            `${response.data.wind.deg}` > 158 &&
+            `${response.data.wind.deg}` <= 203
           ) {
-            windDegreeElement.innerHTML = "↖️";
+            windDegreeElement.innerHTML = "⬆️";
           } else {
-            if (`${response.data.wind.deg}` >158 && `${response.data.wind.deg}` <=203
+            if (
+              `${response.data.wind.deg}` > 203 &&
+              `${response.data.wind.deg}` <= 248
             ) {
-              windDegreeElement.innerHTML = "⬆️";
+              windDegreeElement.innerHTML = "↗️";
             } else {
-              if (`${response.data.wind.deg}` >203 && `${response.data.wind.deg}` <=248
+              if (
+                `${response.data.wind.deg}` > 248 &&
+                `${response.data.wind.deg}` <= 293
               ) {
-                windDegreeElement.innerHTML = "↗️";
+                windDegreeElement.innerHTML = "➡️";
               } else {
-                if (`${response.data.wind.deg}` >248 && `${response.data.wind.deg}` <=293
-                ) {windDegreeElement.innerHTML = "➡️";
-              } else {windDegreeElement.innerHTML = "↘️";
+                windDegreeElement.innerHTML = "↘️";
               }
-            } 
+            }
           }
         }
       }
