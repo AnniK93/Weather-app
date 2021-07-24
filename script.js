@@ -351,26 +351,15 @@ let days = [
 ];
 let day = now.getDay();
 let currentDay = days[now.getDay()];
-
-function addZerotoMinutes() {
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  return minutes;
-}
 let minutes = now.getMinutes();
-
-addZerotoMinutes();
-
-function addZerotoHours() {
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  return hours;
+if (minutes < 10) {
+  minutes = `0${minutes}`;
 }
-let hours = now.getHours();
 
-addZerotoHours();
+let hours = now.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
 
 let currentTime = `${hours}:${minutes}`;
 
