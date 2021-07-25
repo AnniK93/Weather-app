@@ -63,6 +63,9 @@ function showWeather(response) {
                   `${response.data.weather[0].description}` === "tornado"
                 ) {
                   elementWeatherSymbol.innerHTML = "🌪";
+                }
+                if (`${response.data.weather[0].description}` === "smoke") {
+                  elementWeatherSymbol.innerHTML = "🔥";
                 } else {
                   elementWeatherSymbol.innerHTML = "⚡️";
                 }
