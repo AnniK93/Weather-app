@@ -12,62 +12,57 @@ function showWeather(response) {
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = `${weatherDescription}`;
 
-  let elementWeatherSymbol = document.querySelector("#weather-symbol");
+  let weatherIconElement = document.querySelector("#weather-icon");
 
-  if (
-    `${response.data.weather[0].description}` === "clear sky" ||
-    `${response.data.weather[0].description}` === "sunny"
-  ) {
-    elementWeatherSymbol.innerHTML = "☀";
+  if (`${response.data.weather[0].icon}` === "01d") {
+    weatherIconElement.innerHTML = "☀";
   } else {
-    if (
-      `${response.data.weather[0].description}` === "scattered clouds" ||
-      `${response.data.weather[0].description}` === "few clouds"
-    ) {
-      elementWeatherSymbol.innerHTML = "🌤";
+    if (`${response.data.weather[0].icon}` === "01n") {
+      weatherIconElement.innerHTML = "🌙";
     } else {
-      if (
-        `${response.data.weather[0].description}` === "light rain" ||
-        `${response.data.weather[0].description}` === "rain" ||
-        `${response.data.weather[0].description}` === "drizzle" ||
-        `${response.data.weather[0].description}` === "moderate rain" ||
-        `${response.data.weather[0].description}` ===
-          "light intensity shower rain" ||
-        `${response.data.weather[0].description}` ===
-          "light intensity drizzle" ||
-        `${response.data.weather[0].description}` === "heavy intensity rain"
-      ) {
-        elementWeatherSymbol.innerHTML = "🌧";
+      if (`${response.data.weather[0].icon}` === "02d") {
+        weatherIconElement.innerHTML = "🌤";
       } else {
-        if (`${response.data.weather[0].description}` === "broken clouds") {
-          elementWeatherSymbol.innerHTML = "⛅️";
+        if (
+          `${response.data.weather[0].icon}` === "09d" ||
+          `${response.data.weather[0].icon}` === "09n" ||
+          `${response.data.weather[0].icon}` === "10n"
+        ) {
+          weatherIconElement.innerHTML = "🌧";
         } else {
-          if (
-            `${response.data.weather[0].description}` === "overcast clouds" ||
-            `${response.data.weather[0].description}` === "haze" ||
-            `${response.data.weather[0].description}` === "fog" ||
-            `${response.data.weather[0].description}` === "mist"
-          ) {
-            elementWeatherSymbol.innerHTML = "☁️";
+          if (`${response.data.weather[0].icon}` === "10d") {
+            weatherIconElement.innerHTML = "🌦";
           } else {
-            if (`${response.data.weather[0].description}` === "snow") {
-              elementWeatherSymbol.innerHTML = "🌨";
+            if (`${response.data.weather[0].icon}` === "03d") {
+              weatherIconElement.innerHTML = "⛅️";
             } else {
               if (
-                `${response.data.weather[0].description}` === "thunderstorm"
+                `${response.data.weather[0].icon}` === "04d" ||
+                `${response.data.weather[0].icon}` === "04n" ||
+                `${response.data.weather[0].icon}` === "02n" ||
+                `${response.data.weather[0].icon}` === "03n"
               ) {
-                elementWeatherSymbol.innerHTML = "⛈";
+                weatherIconElement.innerHTML = "☁️";
               } else {
                 if (
-                  `${response.data.weather[0].description}` === "hurricane" ||
-                  `${response.data.weather[0].description}` === "tornado"
+                  `${response.data.weather[0].icon}` === "13d" ||
+                  `${response.data.weather[0].icon}` === "13n"
                 ) {
-                  elementWeatherSymbol.innerHTML = "🌪";
-                }
-                if (`${response.data.weather[0].description}` === "smoke") {
-                  elementWeatherSymbol.innerHTML = "🔥";
+                  weatherIconElement.innerHTML = "🌨";
                 } else {
-                  elementWeatherSymbol.innerHTML = "⚡️";
+                  if (
+                    `${response.data.weather[0].icon}` === "11d" ||
+                    `${response.data.weather[0].icon}` === "11n"
+                  ) {
+                    weatherIconElement.innerHTML = "⛈";
+                  } else {
+                    if (
+                      `${response.data.weather[0].icon}` === "50d" ||
+                      `${response.data.weather[0].icon}` === "50n"
+                    ) {
+                      elementWeatherSymbol.innerHTML = "🌫";
+                    }
+                  }
                 }
               }
             }
