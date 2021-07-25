@@ -2,7 +2,8 @@ header {
   margin-top: 50px;
 }
 body {
-  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/009/038/original/20190920_125312.jpg?1621191909);
+  /*background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/009/038/original/20190920_125312.jpg?1621191909);*/
+  background-image: url('few_clouds.jpg');
   background-attachment: fixed;
   background-size: cover;
   max-width: 80%;
