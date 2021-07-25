@@ -27,12 +27,17 @@ function showWeather(response) {
         document.body.style.backgroundImage = "url('./src/few_clouds.jpg')";
       } else {
         if (
-          `${response.data.weather[0].icon}` === "09d" ||
+          `${response.data.weather[0].icon}` === "09d"
+        ) {
+          weatherIconElement.innerHTML = "🌧";
+          document.body.style.backgroundImage = "url('./src/rain.jpg')";
+        } else {
+        if (
           `${response.data.weather[0].icon}` === "09n" ||
           `${response.data.weather[0].icon}` === "10n"
         ) {
           weatherIconElement.innerHTML = "🌧";
-          document.body.style.backgroundImage = "url('./src/rain.jpg')";
+          document.body.style.backgroundImage = "url('./src/rain_night.jpg')";
         } else {
           if (`${response.data.weather[0].icon}` === "10d") {
             weatherIconElement.innerHTML = "🌦";
@@ -86,6 +91,7 @@ function showWeather(response) {
       }
     }
   }
+}
 }
 
   let humidity = `${response.data.main.humidity}`;
