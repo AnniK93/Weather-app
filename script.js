@@ -1,6 +1,7 @@
 //Search city
 function showWeather(response) {
-  console.log(response.data);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
 
