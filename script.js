@@ -1,5 +1,6 @@
 //Search city
 function showWeather(response) {
+  console.log(response);
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
@@ -54,7 +55,7 @@ function showWeather(response) {
                 `${response.data.weather[0].icon}` === "04d"
               ) {
                 weatherIconElement.innerHTML = "☁️";
-                document.body.style.backgroundImage = "url('./src/cloudy.jpg')";
+                document.body.style.backgroundImage = "url('./src/broken_clouds.jpg')";
               } else {
               if (
                 `${response.data.weather[0].icon}` === "04n" ||
