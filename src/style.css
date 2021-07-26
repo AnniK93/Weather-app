@@ -47,11 +47,20 @@ h3 {
   font-size: 50px;
   margin: 20px 0px;
 }
-
-.currentTemperature a:link {
+.currentTemperature a:link{
   text-decoration: none;
-  color: black;
 }
+
+.currentTemperature .active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+  font-weight: bold;
+}
+.currentTemperature .active:hover {
+  text-decoration: none;
+}
+
 .unit {
   font-size: 20px;
   position: relative;

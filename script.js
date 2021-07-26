@@ -4,7 +4,9 @@ function showWeather(response) {
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
 
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+
+  let temperature = Math.round(celsiusTemperature);
   let tempElement = document.querySelector("#currentDegrees");
   tempElement.innerHTML = `${temperature}`;
 
@@ -387,23 +389,30 @@ let element = document.querySelector("#currentTime");
 element.innerHTML = `${currentDay} ${currentTime}`;
 
 //Temperature Celsius -> Fahrenheit -> Celsius
-function displayFahrenheit(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let fahrenheitTemperature = document.querySelector("#currentDegrees");
-  fahrenheitTemperature.innerHTML = "66";
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#currentDegrees");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 +32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", displayFahrenheit);
-
-function displayCelsius(event) {
-  event.preventDefault();
-  let celsiusTemperature = document.querySelector("#currentDegrees");
-  celsiusTemperature.innerHTML = "19";
+function displayCelsiusTemperature(event) {
+ event.preventDefault();
+ fahrenheitLink.classList.remove("active");
+ celsiusLink.classList.add("active");
+ let temperatureElement = document.querySelector("#currentDegrees");
+temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", displayCelsius);
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 //The next 24 hours
 
