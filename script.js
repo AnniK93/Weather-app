@@ -1,33 +1,48 @@
 //Forecast week
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
 
-function displayForecastWeek() {
+}
+
+function displayForecastWeek(response){
+ let forecast = response.data.daily;
  let forecastWeekElement = document.querySelector("#forecast-week");
  let forecastWeekHTML = `<div class="row">`;
- let days = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon"]
-days.forEach(function(day) {
+ 
+forecast.forEach(function(forecastDay, index) {
+  if (index < 6) {
  forecastWeekHTML = forecastWeekHTML + 
  `<div class="col-2">
-    <div class="weather-forecast-date"><strong>${day}</strong></div>
+    <div class="weather-forecast-date"><strong>${formatDay(forecastDay.dt)}</strong></div>
        <div class="forecast-icon">🌦</div>
        <div class="weather-forecast-temperatures">
-       <span class="weather-forecast-temperature-max"> 18°C </span>
-       <span class="weather-forecast-temperature-min"> 12°C </span>
+       <span class="weather-forecast-temperature-max"><strong>${Math.round(forecastDay.temp.max)}°C</strong></span> /
+       <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temp.min)}°C </span>
       </div>
   </div>`;
+}
 });
 forecastWeekHTML = forecastWeekHTML + `</div>`;
 forecastWeekElement.innerHTML = forecastWeekHTML; 
-} 
+}
 
+
+function getForecastWeek(coordinates) {
+let apiKey = "6697611895f9d8bb5ac23403332f6cdd";
+let units = "metric";
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(displayForecastWeek);
+}
 
 //Search city
 function showWeather(response) {
-  console.log(response);
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
-  displayForecastWeek()
 
   celsiusTemperature = response.data.main.temp;
 
@@ -38,6 +53,8 @@ function showWeather(response) {
   let weatherDescription = `${response.data.weather[0].description}`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = `${weatherDescription}`;
+
+  getForecastWeek(response.data.coord);
 
   let weatherIconElement = document.querySelector("#weather-icon");
 
