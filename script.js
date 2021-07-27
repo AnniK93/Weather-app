@@ -1,3 +1,25 @@
+//Forecast week
+
+function displayForecastWeek() {
+ let forecastWeekElement = document.querySelector("#forecast-week");
+ let forecastWeekHTML = `<div class="row">`;
+ let days = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon"]
+days.forEach(function(day) {
+ forecastWeekHTML = forecastWeekHTML + 
+ `<div class="col-2">
+    <div class="weather-forecast-date"><strong>${day}</strong></div>
+       <div class="forecast-icon">🌦</div>
+       <div class="weather-forecast-temperatures">
+       <span class="weather-forecast-temperature-max"> 18°C </span>
+       <span class="weather-forecast-temperature-min"> 12°C </span>
+      </div>
+  </div>`;
+});
+forecastWeekHTML = forecastWeekHTML + `</div>`;
+forecastWeekElement.innerHTML = forecastWeekHTML; 
+} 
+
+
 //Search city
 function showWeather(response) {
   console.log(response);
@@ -5,6 +27,7 @@ function showWeather(response) {
   celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
+  displayForecastWeek()
 
   celsiusTemperature = response.data.main.temp;
 
@@ -361,6 +384,9 @@ function searchRandomLocation(event) {
 let buttonRandomLocation = document.querySelector("#random-location");
 buttonRandomLocation.addEventListener("click", searchRandomLocation);
 
+
+
+
 //Day & time
 let now = new Date();
 
@@ -562,100 +588,3 @@ addZerotoCurrentPlusEighteen();
 let plusEighteenHours = document.querySelector("#plusEighteenHours");
 plusEighteenHours.innerHTML = `${formattedPlusEighteen}:00`;
 
-//The next 6 days
-
-//+1
-let todayPlusOne = day + 1;
-
-function formatTodayPlusOne() {
-  if (todayPlusOne > 6) {
-    return (formattedTodayPlusOne = `${todayPlusOne - 7}`);
-  } else {
-    return (formattedTodayPlusOne = `${todayPlusOne}`);
-  }
-}
-
-formatTodayPlusOne();
-
-let plusOneDay = document.querySelector("#tomorrow");
-plusOneDay.innerHTML = days[formattedTodayPlusOne];
-//+2
-let todayPlusTwo = day + 2;
-
-function formatTodayPlusTwo() {
-  if (todayPlusTwo > 6) {
-    return (formattedTodayPlusTwo = `${todayPlusTwo - 7}`);
-  } else {
-    return (formattedTodayPlusTwo = `${todayPlusTwo}`);
-  }
-}
-
-formatTodayPlusTwo();
-
-let plusTwoDays = document.querySelector("#plusTwo");
-plusTwoDays.innerHTML = days[formattedTodayPlusTwo];
-
-//+3
-let todayPlusThree = day + 3;
-
-function formatTodayPlusThree() {
-  if (todayPlusThree > 6) {
-    return (formattedTodayPlusThree = `${todayPlusThree - 7}`);
-  } else {
-    return (formattedTodayPlusThree = `${todayPlusThree}`);
-  }
-}
-
-formatTodayPlusThree();
-
-let plusThreeDays = document.querySelector("#plusThree");
-plusThreeDays.innerHTML = days[formattedTodayPlusThree];
-
-//+4
-let todayPlusFour = day + 4;
-
-function formatTodayPlusFour() {
-  if (todayPlusFour > 6) {
-    return (formattedTodayPlusFour = `${todayPlusFour - 7}`);
-  } else {
-    return (formattedTodayPlusFour = `${todayPlusFour}`);
-  }
-}
-
-formatTodayPlusFour();
-
-let plusFourDays = document.querySelector("#plusFour");
-plusFourDays.innerHTML = days[formattedTodayPlusFour];
-
-//+5
-let todayPlusFive = day + 5;
-
-function formatTodayPlusFive() {
-  if (todayPlusFive > 6) {
-    return (formattedTodayPlusFive = `${todayPlusFive - 7}`);
-  } else {
-    return (formattedTodayPlusFive = `${todayPlusFive}`);
-  }
-}
-
-formatTodayPlusFive();
-
-let plusFiveDays = document.querySelector("#plusFive");
-plusFiveDays.innerHTML = days[formattedTodayPlusFive];
-
-//+6
-
-let todayPlusSix = day + 6;
-
-function formatTodayPlusSix() {
-  if (todayPlusSix > 6) {
-    return (formattedTodayPlusSix = `${todayPlusSix - 7}`);
-  } else {
-    return (formattedTodayPlusSix = `${todayPlusSix}`);
-  }
-}
-
-formatTodayPlusSix();
-
-let plusSixDays = document.querySelector("#plusSix");
-plusSixDays.innerHTML = days[formattedTodayPlusSix];
