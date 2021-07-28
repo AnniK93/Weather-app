@@ -1,5 +1,6 @@
 let preferredUnit = prompt("Would you like to use this app in Celsius or Fahrenheit?")
-if (preferredUnit === "Celsius") {
+preferredUnit = preferredUnit.toLowerCase();
+if (preferredUnit === "celsius" || preferredUnit === "c") {
 
 //Forecast week
 function formatDay(timestamp) {
@@ -78,8 +79,6 @@ axios.get(apiUrl).then(displayForecastHour);
 
 //Search city
 function showWeather(response) {
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
 
@@ -430,8 +429,6 @@ let buttonRandomLocation = document.querySelector("#random-location");
 buttonRandomLocation.addEventListener("click", searchRandomLocation);
 
 
-
-
 //Day & time
 let now = new Date();
 
@@ -461,34 +458,23 @@ let currentTime = `${hours}:${minutes}`;
 let element = document.querySelector("#currentTime");
 element.innerHTML = `${currentDay} ${currentTime}`;
 
-//Temperature Celsius -> Fahrenheit -> Celsius
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let temperatureElement = document.querySelector("#currentDegrees");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 +32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
- event.preventDefault();
- fahrenheitLink.classList.remove("active");
- celsiusLink.classList.add("active");
- let temperatureElement = document.querySelector("#currentDegrees");
-temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 } else {
-  if (preferredUnit === "Fahrenheit") {
+  if (preferredUnit === "fahrenheit" || preferredUnit === "f") {
+
+  let fahrenheitCurrentElement = document.querySelector("#current-temperature");
+  let fahrenheitCurrentHTML = `<div class="currentTemperature">`;
+  fahrenheitCurrentHTML = fahrenheitCurrentHTML +
+  `
+  <img src="http://openweathermap.org/img/wn/02d@2x.png" class="weather-symbol" id="weather-icon" />
+    <span id="currentDegrees">66</span
+    ><span class="unit"
+    ><span id="celsius">°F</span>
+    </span>
+`;
+fahrenheitCurrentHTML = fahrenheitCurrentHTML + `</div>`;
+console.log(fahrenheitCurrentElement);
+fahrenheitCurrentElement.innerHTML = fahrenheitCurrentHTML;
 
 //Forecast week
 function formatDay(timestamp) {
@@ -567,8 +553,6 @@ axios.get(apiUrl).then(displayForecastHour);
 
 //Search city
 function showWeather(response) {
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
   let h1Element = document.querySelector("h1");
   h1Element.innerHTML = `${response.data.name}`;
 
@@ -950,31 +934,8 @@ let currentTime = `${hours}:${minutes}`;
 let element = document.querySelector("#currentTime");
 element.innerHTML = `${currentDay} ${currentTime}`;
 
-//Temperature Celsius -> Fahrenheit -> Celsius
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let temperatureElement = document.querySelector("#currentDegrees");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 +32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
- event.preventDefault();
- fahrenheitLink.classList.remove("active");
- celsiusLink.classList.add("active");
- let temperatureElement = document.querySelector("#currentDegrees");
-temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
+  } else {
+    alert("Please type 'Celsius' or 'Fahrenheit'.");
+    document.location.reload();
   }
 }
