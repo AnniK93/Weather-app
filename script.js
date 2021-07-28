@@ -14,7 +14,6 @@ function displayForecastWeek(response){
  
 forecast.forEach(function(forecastDay, index) {
   if (index < 7 && index > 0) {
-    console.log(forecastDay)
  forecastWeekHTML = forecastWeekHTML + 
  `<div class="col-2">
     <div class="weather-forecast-date"><strong>${formatDay(forecastDay.dt)}</strong></div>
@@ -38,6 +37,42 @@ let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.
 axios.get(apiUrl).then(displayForecastWeek);
 }
 
+function formatHour(timestamp) {
+let date = new Date(timestamp * 1000);
+let hour = date.getHours();
+if (hour < 10) {
+  hour = `0${hour}`;
+}
+return hour;
+}
+
+function displayForecastHour(response){
+ let forecast = response.data.hourly;
+ let forecastHourElement = document.querySelector("#forecast-hours");
+ let forecastHourHTML = `<div class="row">`;
+ 
+forecast.forEach(function(forecastHour, index) {
+    if (index < 7 && index > 0) {
+ forecastHourHTML = forecastHourHTML + 
+ `<div class="col-2">
+    <div class="weather-forecast-date"><strong>${formatHour(forecastHour.dt)}:00</strong></div>
+       <img src="http://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png" alt="${forecastHour.weather[0].description}" width="42"/>
+       <div class="weather-forecast-temperatures">
+       <span class="weather-forecast-temperature"><strong>${Math.round(forecastHour.temp)}°C</strong></span>
+       </div>
+  </div>`;
+}
+});
+forecastHourHTML = forecastHourHTML + `</div>`;
+forecastHourElement.innerHTML = forecastHourHTML; 
+}
+function getForecastHour(coordinates) {
+let apiKey = "6697611895f9d8bb5ac23403332f6cdd";
+let units = "metric";
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(displayForecastHour);
+}
+
 //Search city
 function showWeather(response) {
   fahrenheitLink.classList.remove("active");
@@ -56,6 +91,7 @@ function showWeather(response) {
   descriptionElement.innerHTML = `${weatherDescription}`;
 
   getForecastWeek(response.data.coord);
+  getForecastHour(response.data.coord);
 
   //console.log(response);
   let weatherIconElement = document.querySelector("#weather-icon");
@@ -448,148 +484,3 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-//The next 24 hours
-
-hours = now.getHours();
-
-//+3
-let currentPlusThree = `${hours + 3}`;
-
-function formatTimePlusThree() {
-  if (currentPlusThree > 23) {
-    return (formattedPlusThree = `${currentPlusThree - 24}`);
-  } else {
-    return (formattedPlusThree = `${currentPlusThree}`);
-  }
-}
-formatTimePlusThree();
-
-function addZerotoCurrentPlusThree() {
-  if (formattedPlusThree < 10) {
-    formattedPlusThree = "0" + formattedPlusThree;
-  }
-  return formattedPlusThree;
-}
-
-addZerotoCurrentPlusThree();
-
-let plusThreeHours = document.querySelector("#plusThreeHours");
-plusThreeHours.innerHTML = `${formattedPlusThree}:00`;
-
-//+6
-let currentPlusSix = `${hours + 6}`;
-
-function formatTimePlusSix() {
-  if (currentPlusSix > 23) {
-    return (formattedPlusSix = `${currentPlusSix - 24}`);
-  } else {
-    return (formattedPlusSix = `${currentPlusSix}`);
-  }
-}
-formatTimePlusSix();
-
-function addZerotoCurrentPlusSix() {
-  if (formattedPlusSix < 10) {
-    formattedPlusSix = "0" + formattedPlusSix;
-  }
-  return formattedPlusSix;
-}
-
-addZerotoCurrentPlusSix();
-
-let plusSixHours = document.querySelector("#plusSixHours");
-plusSixHours.innerHTML = `${formattedPlusSix}:00`;
-
-//+9
-let currentPlusNine = `${hours + 9}`;
-
-function formatTimePlusNine() {
-  if (currentPlusNine > 23) {
-    return (formattedPlusNine = `${currentPlusNine - 24}`);
-  } else {
-    return (formattedPlusNine = `${currentPlusNine}`);
-  }
-}
-formatTimePlusNine();
-
-function addZerotoCurrentPlusNine() {
-  if (formattedPlusNine < 10) {
-    formattedPlusNine = "0" + formattedPlusNine;
-  }
-  return formattedPlusNine;
-}
-
-addZerotoCurrentPlusNine();
-
-let plusNineHours = document.querySelector("#plusNineHours");
-plusNineHours.innerHTML = `${formattedPlusNine}:00`;
-
-//+12
-let currentPlusTwelve = `${hours + 12}`;
-
-function formatTimePlusTwelve() {
-  if (currentPlusTwelve > 23) {
-    return (formattedPlusTwelve = `${currentPlusTwelve - 24}`);
-  } else {
-    return (formattedPlusTwelve = `${currentPlusTwelve}`);
-  }
-}
-formatTimePlusTwelve();
-
-function addZerotoCurrentPlusTwelve() {
-  if (formattedPlusTwelve < 10) {
-    formattedPlusTwelve = "0" + formattedPlusTwelve;
-  }
-  return formattedPlusTwelve;
-}
-
-addZerotoCurrentPlusTwelve();
-
-let plusTwelveHours = document.querySelector("#plusTwelveHours");
-plusTwelveHours.innerHTML = `${formattedPlusTwelve}:00`;
-//+15
-let currentPlusFifteen = `${hours + 15}`;
-
-function formatTimePlusFifteen() {
-  if (currentPlusFifteen > 23) {
-    return (formattedPlusFifteen = `${currentPlusFifteen - 24}`);
-  } else {
-    return (formattedPlusFifteen = `${currentPlusFifteen}`);
-  }
-}
-formatTimePlusFifteen();
-
-function addZerotoCurrentPlusFifteen() {
-  if (formattedPlusFifteen < 10) {
-    formattedPlusFifteen = "0" + formattedPlusFifteen;
-  }
-  return formattedPlusFifteen;
-}
-
-addZerotoCurrentPlusFifteen();
-
-let plusFifteenHours = document.querySelector("#plusFifteenHours");
-plusFifteenHours.innerHTML = `${formattedPlusFifteen}:00`;
-
-//+18
-let currentPlusEighteen = `${hours + 18}`;
-
-function formatTimePlusEighteen() {
-  if (currentPlusEighteen > 23) {
-    return (formattedPlusEighteen = `${currentPlusEighteen - 24}`);
-  } else {
-    return (formattedPlusEighteen = `${currentPlusEighteen}`);
-  }
-}
-formatTimePlusEighteen();
-
-function addZerotoCurrentPlusEighteen() {
-  if (formattedPlusEighteen < 10) {
-    formattedPlusEighteen = "0" + formattedPlusEighteen;
-  }
-  return formattedPlusEighteen;
-}
-
-addZerotoCurrentPlusEighteen();
-let plusEighteenHours = document.querySelector("#plusEighteenHours");
-plusEighteenHours.innerHTML = `${formattedPlusEighteen}:00`;
