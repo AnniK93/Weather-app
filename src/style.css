@@ -100,3 +100,6 @@ footer {
 a {
   color: black;
 }
+a:link hover {
+  color: black;
+}
