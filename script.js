@@ -95,7 +95,6 @@ function showWeather(response) {
   getForecastWeek(response.data.coord);
   getForecastHour(response.data.coord);
 
-  //console.log(response);
   let weatherIconElement = document.querySelector("#weather-icon");
   weatherIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
@@ -469,7 +468,7 @@ element.innerHTML = `${currentDay} ${currentTime}`;
   <img src="http://openweathermap.org/img/wn/02d@2x.png" class="weather-symbol" id="weather-icon" />
     <span id="currentDegrees">66</span
     ><span class="unit"
-    ><span id="celsius">°F</span>
+    ><span id="celsius"> °F</span>
     </span>
 `;
 fahrenheitCurrentHTML = fahrenheitCurrentHTML + `</div>`;
