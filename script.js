@@ -13,11 +13,12 @@ function displayForecastWeek(response){
  let forecastWeekHTML = `<div class="row">`;
  
 forecast.forEach(function(forecastDay, index) {
-  if (index < 6) {
+  if (index < 7 && index > 0) {
+    console.log(forecastDay)
  forecastWeekHTML = forecastWeekHTML + 
  `<div class="col-2">
     <div class="weather-forecast-date"><strong>${formatDay(forecastDay.dt)}</strong></div>
-       <div class="forecast-icon">🌦</div>
+       <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="${forecastDay.weather[0].description}" width="42"/>
        <div class="weather-forecast-temperatures">
        <span class="weather-forecast-temperature-max"><strong>${Math.round(forecastDay.temp.max)}°C</strong></span> /
        <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temp.min)}°C </span>
@@ -70,7 +71,8 @@ function showWeather(response) {
         document.body.style.backgroundImage = "url('./src/few_clouds.jpg')";
       } else {
         if (
-          `${response.data.weather[0].icon}` === "09d"
+          `${response.data.weather[0].icon}` === "09d" ||
+          `${response.data.weather[0].icon}` === "10d"
         ) {
           document.body.style.backgroundImage = "url('./src/rain.jpg')";
         } else {
@@ -80,9 +82,6 @@ function showWeather(response) {
         ) {
           document.body.style.backgroundImage = "url('./src/rain_night.jpg')";
         } else {
-          if (`${response.data.weather[0].icon}` === "10d") {
-            document.body.style.backgroundImage = "url('./src/rain.jpg')";
-          } else {
             if (`${response.data.weather[0].icon}` === "03d") {
               document.body.style.backgroundImage = "url('./src/scattered_clouds.jpg')";
             } else {
@@ -126,7 +125,7 @@ function showWeather(response) {
     }
   }
 }
-}
+
 
   let humidity = `${response.data.main.humidity}`;
   let humidityElement = document.querySelector("#humidity");
