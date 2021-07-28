@@ -56,45 +56,39 @@ function showWeather(response) {
 
   getForecastWeek(response.data.coord);
 
+  //console.log(response);
   let weatherIconElement = document.querySelector("#weather-icon");
+  weatherIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
   if (`${response.data.weather[0].icon}` === "01d") {
-    weatherIconElement.innerHTML = "☀";
     document.body.style.backgroundImage = "url('./src/sunny.jpg')";
   } else {
     if (`${response.data.weather[0].icon}` === "01n") {
-      weatherIconElement.innerHTML = "🌙";
       document.body.style.backgroundImage = "url('./src/clear_night.jpg')";
     } else {
       if (`${response.data.weather[0].icon}` === "02d") {
-        weatherIconElement.innerHTML = "🌤";
         document.body.style.backgroundImage = "url('./src/few_clouds.jpg')";
       } else {
         if (
           `${response.data.weather[0].icon}` === "09d"
         ) {
-          weatherIconElement.innerHTML = "🌧";
           document.body.style.backgroundImage = "url('./src/rain.jpg')";
         } else {
         if (
           `${response.data.weather[0].icon}` === "09n" ||
           `${response.data.weather[0].icon}` === "10n"
         ) {
-          weatherIconElement.innerHTML = "🌧";
           document.body.style.backgroundImage = "url('./src/rain_night.jpg')";
         } else {
           if (`${response.data.weather[0].icon}` === "10d") {
-            weatherIconElement.innerHTML = "🌦";
             document.body.style.backgroundImage = "url('./src/rain.jpg')";
           } else {
             if (`${response.data.weather[0].icon}` === "03d") {
-              weatherIconElement.innerHTML = "⛅️";
               document.body.style.backgroundImage = "url('./src/scattered_clouds.jpg')";
             } else {
               if (
                 `${response.data.weather[0].icon}` === "04d"
               ) {
-                weatherIconElement.innerHTML = "☁️";
                 document.body.style.backgroundImage = "url('./src/broken_clouds.jpg')";
               } else {
               if (
@@ -102,28 +96,24 @@ function showWeather(response) {
                 `${response.data.weather[0].icon}` === "02n" ||
                 `${response.data.weather[0].icon}` === "03n"
               ) {
-                weatherIconElement.innerHTML = "☁️";
                 document.body.style.backgroundImage = "url('./src/cloudy.jpg')";
               } else {
                 if (
                   `${response.data.weather[0].icon}` === "13d" ||
                   `${response.data.weather[0].icon}` === "13n"
                 ) {
-                  weatherIconElement.innerHTML = "🌨";
                   document.body.style.backgroundImage = "url('./src/snow.jpg')";
                 } else {
                   if (
                     `${response.data.weather[0].icon}` === "11d" ||
                     `${response.data.weather[0].icon}` === "11n"
                   ) {
-                    weatherIconElement.innerHTML = "⛈";
                     document.body.style.backgroundImage = "url('./src/thunder.jpg')";
                   } else {
                     if (
                       `${response.data.weather[0].icon}` === "50d" ||
                       `${response.data.weather[0].icon}` === "50n"
                     ) {
-                      weatherIconElement.innerHTML = "🌫";
                       document.body.style.backgroundImage = "url('./src/foggy.jpg')";
                     }
                   }
@@ -604,4 +594,3 @@ function addZerotoCurrentPlusEighteen() {
 addZerotoCurrentPlusEighteen();
 let plusEighteenHours = document.querySelector("#plusEighteenHours");
 plusEighteenHours.innerHTML = `${formattedPlusEighteen}:00`;
-

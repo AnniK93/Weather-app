@@ -2,7 +2,6 @@ header {
   margin-top: 50px;
 }
 body {
-  /*background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/009/038/original/20190920_125312.jpg?1621191909);*/
   background-image: url('few_clouds.jpg');
   background-attachment: fixed;
   background-size: cover;
@@ -11,7 +10,7 @@ body {
   margin: 0 auto;
 }
 .container {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   padding: 0px 40px;
   max-width: 1000px;
 }
